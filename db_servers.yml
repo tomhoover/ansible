@@ -1,0 +1,8 @@
+---
+# db_servers.yml
+
+- hosts: db
+  roles:
+    - common
+#    - rsyslog
+...

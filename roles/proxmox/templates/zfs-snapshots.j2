@@ -1,0 +1,38 @@
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+# ZFS snapshots
+*/15 * * * * root zfsnap.sh snapshot -rsSvz -p 15min-   -a 3d      {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh snapshot -rsSvz -p daily-   -a 3w      {{ snapshot_filesystems }} > /dev/null 2>&1
+@weekly      root zfsnap.sh snapshot -rsSvz -p weekly-  -a 3m      {{ snapshot_filesystems }} > /dev/null 2>&1
+@reboot      root zfsnap.sh snapshot -rsSvz -p reboot-  -a 3m      {{ snapshot_filesystems }} > /dev/null 2>&1
+@monthly     root zfsnap.sh snapshot -rsSvz -p monthly- -a forever {{ snapshot_filesystems }} > /dev/null 2>&1
+
+#-------------------------
+
+# ZFS sync snapshots
+00 * * * *   root simplesnap --host {{ inventory_hostname }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --local
+{{ (10 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host2 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+#{{ (20 + backup_sync_offset)|int }} * * * *   root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+
+#-------------------------
+
+# ZFS cleanup snapshots
+@daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             pool rpool > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             pool rpool > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- pool rpool
+@daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           pool rpool > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv       -p 15min- -p daily- -p weekly- -p reboot- {{ cleanup_filesystems }}
+
+#-------------------------
+
+# ZFS check
+@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+#@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+
+#-------------------------
+
+# cleanup old .lock files
+@hourly      root find /mnt/backups/pvhost1/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost1/.lock’: No such file or directory"
+@hourly      root find /mnt/backups/pvhost2/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost2/.lock’: No such file or directory"
+@hourly      root find /mnt/backups/ariel-wl/.lock  -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/ariel-wl/.lock’: No such file or directory"

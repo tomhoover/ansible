@@ -1,0 +1,9 @@
+---
+# handlers file for pihole
+
+- name: restart dns
+#  shell: pihole restartdns
+  service:
+    name: pihole-FTL
+    state: restarted
+...

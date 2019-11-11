@@ -1,0 +1,9 @@
+---
+# pihole_servers.yml
+
+- hosts: pihole
+  roles:
+    - common
+    - pihole
+#    - rsyslog
+...

@@ -1,0 +1,29 @@
+---
+# tasks file for proxmox
+
+- name: Install packages
+  apt:
+    pkg:
+    - etckeeper
+    - mc
+    - nfs-kernel-server
+
+- name: Copy zfs-snapshots file to /etc/cron.d
+  template:
+    src: zfs-snapshots.j2
+    dest: /etc/cron.d/zfs-snapshots
+    mode: 0644
+
+- name: Copy /usr/local/sbin files
+  copy:
+    src: "{{ item }}"
+    dest: /usr/local/sbin/
+    owner: root
+    group: staff
+    mode: 0755
+    follow: no       # overwrite existing links with files
+  loop:
+    - ~/src/github.com/tomhoover/simplesnap/simplesnap
+    - ~/src/github.com/tomhoover/simplesnap/simplesnapwrap
+    - ~/src/github.com/zfsnap/zfsnap/sbin/zfsnap.sh
+...

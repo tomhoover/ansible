@@ -1,0 +1,20 @@
+# production
+
+[db]
+influxdb
+mariadb
+
+[hass]
+ha
+
+[media]
+gabriel
+
+[pihole]
+pihole[1:2]
+
+[proxmox]
+pvhost[1:2]
+
+[web]
+#heimdall.t0m.us

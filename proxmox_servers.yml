@@ -1,0 +1,9 @@
+---
+# proxmox_servers.yml
+
+- hosts: proxmox
+  roles:
+    - common
+    - proxmox
+    - rsyslog
+...

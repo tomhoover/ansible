@@ -1,0 +1,9 @@
+---
+# db_servers.yml
+
+- hosts: hass
+  remote_user: root
+  roles:
+    - common
+    - hass
+...

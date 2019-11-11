@@ -1,0 +1,11 @@
+---
+# tasks file for rsyslog
+
+- name: Copy /etc/rsyslog.d files
+  copy:
+    src: etc_rsyslog.d/
+    dest: /etc/rsyslog.d/
+    mode: 0644
+  notify:
+    - restart rsyslog
+...

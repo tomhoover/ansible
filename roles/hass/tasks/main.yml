@@ -1,0 +1,10 @@
+---
+# tasks file for hass
+
+- name: Copy /etc/cron.daily files
+  copy:
+    src: etc_cron.daily/
+    dest: /etc/cron.daily/
+    mode: 0755
+    follow: no       # overwrite existing links with files
+...

@@ -1,0 +1,6 @@
+---
+# group_vars/web
+
+# https://docs.ansible.com/ansible/2.8/reference_appendices/interpreter_discovery.html
+ansible_python_interpreter: auto_legacy_silent
+...

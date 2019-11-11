@@ -1,0 +1,19 @@
+---
+# tasks file for pihole
+
+- name: Copy /etc/dnsmasq.d files
+  copy:
+    src: etc_dnsmasq.d/
+    dest: /etc/dnsmasq.d/
+    mode: 0644
+  notify:
+    - restart dns
+
+- name: Copy /etc/pihole files
+  copy:
+    src: etc_pihole/
+    dest: /etc/pihole/
+    mode: 0644
+  notify:
+    - restart dns
+...

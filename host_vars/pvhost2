@@ -1,0 +1,9 @@
+---
+# host_vars/pvhost2
+
+backup_store: backups
+backup_host2: pvhost1
+backup_sync_offset: 30
+cleanup_filesystems: backups tank
+snapshot_filesystems: pool rpool tank
+...
