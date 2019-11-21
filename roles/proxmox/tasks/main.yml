@@ -26,4 +26,11 @@
     - ~/src/github.com/tomhoover/simplesnap/simplesnap
     - ~/src/github.com/tomhoover/simplesnap/simplesnapwrap
     - ~/src/github.com/zfsnap/zfsnap/sbin/zfsnap.sh
+
+- name: Copy /usr/local/share files
+  copy:
+    src: ~/src/github.com/zfsnap/zfsnap/share/
+    dest: /usr/local/share/
+    owner: root
+    group: staff
 ...
