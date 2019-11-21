@@ -1,0 +1,11 @@
+---
+# tasks file for postfix
+
+- name: Copy main.cf file to /etc/postfix
+  template:
+    src: main.cf.j2
+    dest: /etc/postfix/main.cf
+    mode: 0644
+  notify:
+    - restart postfix
+...
