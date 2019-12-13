@@ -1,0 +1,8 @@
+---
+# samba_servers.yml
+
+- hosts: samba
+  roles:
+    - common
+    - samba
+...

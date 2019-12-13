@@ -1,0 +1,34 @@
+---
+# tasks file for samba
+
+- name: Install packages
+  apt:
+    pkg:
+    - samba
+
+- name: Change workgroup name
+  lineinfile:
+    path: /etc/samba/smb.conf
+    regexp: 'workgroup = WORKGROUP'
+    line: '   workgroup = hoover'
+    backup: yes
+  notify:
+    - restart samba
+
+- name: Add samba shares
+  blockinfile:
+    path: /etc/samba/smb.conf
+    block: |
+      # Samba Shares
+      [data]
+         comment = tom's data folder
+         path = /home/tom/data
+         browseable = yes
+         read only = no
+         guest ok = no
+         create mask = 0775
+         directory mask = 0775
+    backup: yes
+  notify:
+    - restart samba
+...
