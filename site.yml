@@ -2,9 +2,11 @@
 # site.yml
 
 - import_playbook: db_servers.yml
+- import_playbook: debian_servers.yml
 - import_playbook: hass_servers.yml
 - import_playbook: media_servers.yml
 - import_playbook: pihole_servers.yml
 - import_playbook: proxmox_servers.yml
+- import_playbook: samba_servers.yml
 - import_playbook: web_servers.yml
 ...
