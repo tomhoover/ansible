@@ -1,0 +1,10 @@
+---
+# debian_servers.yml
+
+- hosts: debian
+  roles:
+    - common
+    - postfix
+    - rsyslog
+    - tmux
+...
