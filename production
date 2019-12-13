@@ -1,8 +1,20 @@
 # production
 
+[apt-servers]
+debian[1:2]
+gabriel
+ha
+influxdb
+mariadb
+pihole[1:2]
+pvhost[1:2]
+
 [db]
 influxdb
 mariadb
+
+[debian]
+debian[1:2]
 
 [hass]
 ha
@@ -15,6 +27,9 @@ pihole[1:2]
 
 [proxmox]
 pvhost[1:2]
+
+[samba]
+debian2
 
 [web]
 #heimdall.t0m.us
