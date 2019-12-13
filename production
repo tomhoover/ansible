@@ -1,6 +1,6 @@
 # production
 
-[apt-servers]
+[apt_servers]
 debian[1:2]
 gabriel
 ha
