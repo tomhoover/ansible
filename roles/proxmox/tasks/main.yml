@@ -4,8 +4,6 @@
 - name: Install packages
   apt:
     pkg:
-    - etckeeper
-    - mc
     - nfs-kernel-server
 
 - name: Copy zfs-snapshots file to /etc/cron.d

@@ -6,6 +6,12 @@
     update_cache: yes
     cache_valid_time: 86400
 
+- name: Install packages
+  apt:
+    pkg:
+    - etckeeper
+    - mc
+
 - name: Remove useless packages from the cache
   apt:
     autoclean: yes
