@@ -6,6 +6,14 @@
     src: main.cf.j2
     dest: /etc/postfix/main.cf
     mode: 0644
+    backup: yes
   notify:
     - restart postfix
+
+- name: Copy /root/.forward file
+  copy:
+    src: root/
+    dest: /root
+    mode: 0644
+    force: no       # do not overwrite existing file
 ...
