@@ -1,0 +1,39 @@
+---
+# tasks file for tmux
+
+- name: Install packages
+  apt:
+    pkg:
+    - tmux
+    - fonts-powerline
+    - mosh
+
+- name: Copy .tmux.conf file
+  copy:
+    src: ~/.tmux.conf
+    dest: ~/
+
+- name: Copy .tmux.remote.conf file
+  copy:
+    src: ~/.tmux/tmux.remote.conf
+    dest: ~/.tmux/
+
+- name: Copy .tmux files
+  copy:
+    src: "{{ item }}"
+    dest: ~/.tmux/
+    mode: 0755
+  loop:
+    - ~/.tmux/renew_env.sh
+    - ~/.tmux/yank.sh
+
+- name: Autostart tmux upon login shell
+  blockinfile:
+    path: /root/.profile
+    block: |
+      if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+          tmux new -As default
+      fi
+    backup: yes
+    insertafter: "# ~/.profile: executed by Bourne-compatible login shells."
+...

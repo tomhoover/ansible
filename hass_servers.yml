@@ -1,9 +1,10 @@
 ---
-# db_servers.yml
+# hass_servers.yml
 
 - hosts: hass
   remote_user: root
   roles:
     - common
     - hass
+    - tmux
 ...
