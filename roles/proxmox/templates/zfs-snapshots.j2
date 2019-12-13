@@ -19,7 +19,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 # ZFS cleanup snapshots
 @daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             pool rpool > /dev/null 2>&1
 @daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             pool rpool > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- pool rpool
+@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- pool rpool > /dev/null 2>&1
 @daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           pool rpool > /dev/null 2>&1
 @daily       root zfsnap.sh destroy -rsSv       -p 15min- -p daily- -p weekly- -p reboot- {{ cleanup_filesystems }}
 
