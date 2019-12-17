@@ -31,4 +31,11 @@
     dest: /usr/local/share/
     owner: root
     group: staff
+
+- name: Limit zed's syslog chattiness
+  lineinfile:
+    path: /etc/zfs/zed.d/zed.rc
+    regexp: '^ZED_SYSLOG_SUBCLASS_EXCLUDE=.*'
+    line: 'ZED_SYSLOG_SUBCLASS_EXCLUDE="history_event"'
+    backup: yes
 ...
