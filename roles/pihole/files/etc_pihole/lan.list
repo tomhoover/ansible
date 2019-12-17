@@ -3,6 +3,7 @@
 192.168.2.9	grafana.t0m.us
 192.168.2.9	heimdall.t0m.us
 192.168.2.9	lidarr.t0m.us
+192.168.2.9	mariadb.t0m.us
 192.168.2.9	nzbget.t0m.us
 192.168.2.9	nzbhydra.t0m.us
 192.168.2.9	ombi.t0m.us
@@ -16,6 +17,6 @@
 192.168.2.10    pvhost1 pvhost1.local
 192.168.2.11    pvhost2 pvhost2.local
 192.168.2.55	influxdb.t0m.us
-192.168.2.56	mariadb.t0m.us
+#192.168.2.56	mariadb.t0m.us
 #192.168.2.90	duplicacy.duckdns.org
 #192.168.2.90	restic.duckdns.org
