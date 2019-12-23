@@ -1,0 +1,54 @@
+---
+# tasks file for postgresql
+
+- name: Install packages
+  apt:
+    pkg:
+    - postgresql
+    - postgresql-doc
+
+- name: Create directory
+  file:
+    path: /etc/postgresql-common/createcluster.d
+    state: directory
+    mode: 0755
+
+- name: Copy /etc/postgresql-common/createcluster.d files
+  copy:
+    src: etc_postgresql-common_createcluster.d/
+    dest: /etc/postgresql-common/createcluster.d/
+    mode: 0644
+  notify:
+    - restart postgresql
+
+- name: Create directory
+  file:
+    path: /var/lib/postgresql_wal
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: 0755
+
+# https://wiki.debian.org/PostgreSql
+# pg_lsclusters
+# pg_dropcluster --stop 11 main
+# pg_createcluster --start 11 main
+# pg_ctlcluster 11 main status
+
+# su - postgres
+# psql
+
+# **New User and Database**
+#
+# Create a regular system user account using adduser (skip this step to use an existing account):
+# # adduser hass                        #from regular shell
+#
+# Connect to database and create a new database user and a database:
+# # su - postgres
+# $ createuser --pwprompt hass          #from regular shell
+# $ createdb -O hass homeassistant
+#
+# Connect as user hass to new database:
+# # su - hass
+# $ psql homeassistant
+...

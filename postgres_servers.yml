@@ -1,0 +1,11 @@
+---
+# postgres_servers.yml
+
+- hosts: postgres
+  roles:
+    - common
+#    - postfix
+#    - rsyslog
+#    - tmux
+    - postgresql
+...

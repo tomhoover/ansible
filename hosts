@@ -7,11 +7,13 @@ ha
 influxdb
 mariadb
 pihole[1:2]
+postgresql
 pvhost[1:2]
 
 [db]
 influxdb
 mariadb
+postgresql
 
 [debian]
 debian[1:2]
@@ -24,6 +26,9 @@ gabriel
 
 [pihole]
 pihole[1:2]
+
+[postgres]
+postgresql
 
 [proxmox]
 pvhost[1:2]

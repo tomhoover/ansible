@@ -18,5 +18,6 @@
 192.168.2.11    pvhost2 pvhost2.local
 192.168.2.55	influxdb.t0m.us
 #192.168.2.56	mariadb.t0m.us
+192.168.2.57	postgresql.t0m.us
 #192.168.2.90	duplicacy.duckdns.org
 #192.168.2.90	restic.duckdns.org
