@@ -19,4 +19,11 @@
 - name: Remove dependencies that are no longer required
   apt:
     autoremove: yes
+
+# https://wiert.me/2017/03/24/bash-warning-setlocale-lc_all-cannot-change-locale-en_us-utf-8-on-fresh-raspbian-on-raspberry/
+# shell: echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
+- name: Ensure locale exists
+  locale_gen:
+    name: en_US.UTF-8
+    state: present
 ...
