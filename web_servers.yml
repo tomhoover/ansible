@@ -4,4 +4,7 @@
 - hosts: web
   roles:
     - common
+#    - postfix
+#    - rsyslog
+#    - tmux
 ...

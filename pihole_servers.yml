@@ -4,6 +4,8 @@
 - hosts: pihole
   roles:
     - common
-    - pihole
+#    - postfix
 #    - rsyslog
+#    - tmux
+    - pihole
 ...

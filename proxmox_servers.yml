@@ -4,7 +4,8 @@
 - hosts: proxmox
   roles:
     - common
-    - proxmox
     - postfix
     - rsyslog
+#    - tmux
+    - proxmox
 ...

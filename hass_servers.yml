@@ -5,6 +5,8 @@
   remote_user: root
   roles:
     - common
-    - hass
+#    - postfix
+#    - rsyslog
     - tmux
+    - hass
 ...

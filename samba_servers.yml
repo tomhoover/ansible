@@ -4,5 +4,8 @@
 - hosts: samba
   roles:
     - common
+#    - postfix
+#    - rsyslog
+#    - tmux
     - samba
 ...
