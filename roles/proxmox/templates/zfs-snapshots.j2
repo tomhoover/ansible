@@ -26,9 +26,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 #-------------------------
 
 # ZFS check
-@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
-@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
-#@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
+@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
+#@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
 
 #-------------------------
 
