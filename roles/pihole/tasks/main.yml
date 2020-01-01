@@ -16,4 +16,12 @@
     mode: 0644
   notify:
     - restart dns
+
+- name: Add to .gitignore for etckeeper
+  blockinfile:
+    path: /etc/.gitignore
+    block: |
+      .pihole
+      pihole/pihole-FTL.db
+    backup: yes
 ...
