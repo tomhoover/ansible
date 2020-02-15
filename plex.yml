@@ -1,0 +1,31 @@
+---
+# plex.yml
+
+- hosts: plex
+#  remote_user: root
+#  vars:
+
+  roles:
+    - common
+    - postfix
+    - rsyslog
+#    - tmux
+
+  tasks:
+    - name: Add plex apt-key
+      apt_key:
+        url: https://downloads.plex.tv/plex-keys/PlexSign.key
+
+    - name: Add plex apt repository
+      apt_repository:
+        repo: 'deb https://downloads.plex.tv/repo/deb public main'
+        filename: plex
+        update_cache: yes
+
+    - name: Install packages
+      apt:
+        pkg:
+        - cifs-utils
+        - nfs-common
+        - plexmediaserver
+...

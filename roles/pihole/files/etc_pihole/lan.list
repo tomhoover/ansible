@@ -16,6 +16,7 @@
 #192.168.2.9	transmission.t0m.us
 192.168.2.10    pvhost1 pvhost1.local
 192.168.2.11    pvhost2 pvhost2.local
+192.168.2.19	plex.t0m.us
 192.168.2.55	influxdb.t0m.us
 #192.168.2.56	mariadb.t0m.us
 192.168.2.57	postgresql.t0m.us
