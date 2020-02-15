@@ -11,8 +11,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 # ZFS sync snapshots
 00 * * * *   root simplesnap --host {{ inventory_hostname }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --local
-{{ (10 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host2 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
-#{{ (20 + backup_sync_offset)|int }} * * * *   root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+{{ ( 5 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host2 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+{{ (15 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host3 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+#{{ (25 + backup_sync_offset)|int }} * * * *   root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
 
 #-------------------------
 
@@ -26,8 +27,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 #-------------------------
 
 # ZFS check
-@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
-@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
+@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+@daily       root simplesnap --host pvhost3  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
 #@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
 
 #-------------------------
@@ -35,4 +37,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 # cleanup old .lock files
 @hourly      root find /mnt/backups/pvhost1/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost1/.lock’: No such file or directory"
 @hourly      root find /mnt/backups/pvhost2/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost2/.lock’: No such file or directory"
+@hourly      root find /mnt/backups/pvhost3/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost3/.lock’: No such file or directory"
 @hourly      root find /mnt/backups/ariel-wl/.lock  -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/ariel-wl/.lock’: No such file or directory"

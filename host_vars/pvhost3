@@ -1,0 +1,10 @@
+---
+# host_vars/pvhost3
+
+backup_store: external/backups
+backup_host2: pvhost1
+backup_host3: pvhost2
+backup_sync_offset: 40
+cleanup_filesystems: external
+snapshot_filesystems: pool rpool external/dump
+...

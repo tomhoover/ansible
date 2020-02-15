@@ -7,8 +7,10 @@ ha
 influxdb
 mariadb
 pihole[1:2]
+plex
 postgresql
-pvhost[1:2]
+pvhost[1:3]
+zoneminder
 
 [db]
 influxdb
@@ -31,7 +33,7 @@ pihole[1:2]
 postgresql
 
 [proxmox]
-pvhost[1:2]
+pvhost[1:3]
 
 [samba]
 debian2
