@@ -1,2 +1,6 @@
 ---
 # handlers file for proxmox
+
+- name: reduce swappiness
+  shell: sysctl -w vm.swappiness=10
+...
