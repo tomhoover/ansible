@@ -1,7 +1,7 @@
 ---
 # postgres_servers.yml
 
-- hosts: postgres
+- hosts: postgres_servers
   roles:
     - common
 #    - postfix

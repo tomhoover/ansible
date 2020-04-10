@@ -1,7 +1,7 @@
 ---
 # hass_servers.yml
 
-- hosts: hass
+- hosts: hass_servers
   remote_user: root
   roles:
     - common

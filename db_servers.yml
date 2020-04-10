@@ -1,7 +1,7 @@
 ---
 # db_servers.yml
 
-- hosts: db
+- hosts: db_servers
   roles:
     - common
 #    - postfix

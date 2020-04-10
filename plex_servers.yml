@@ -1,7 +1,7 @@
 ---
 # plex.yml
 
-- hosts: plex
+- hosts: plex_servers
 #  remote_user: root
 #  vars:
 

@@ -1,7 +1,7 @@
 ---
 # web_servers.yml
 
-- hosts: web
+- hosts: web_servers
   roles:
     - common
 #    - postfix

@@ -1,0 +1,12 @@
+---
+# ubuntu_servers.yml
+
+- hosts: ubuntu_servers
+  user: tom
+  become: yes
+  roles:
+    - common
+    - postfix
+    - rsyslog
+    - tmux
+...

@@ -1,7 +1,7 @@
 ---
 # media_servers.yml
 
-- hosts: media
+- hosts: media_servers
   remote_user: root
   roles:
     - common

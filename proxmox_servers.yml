@@ -1,11 +1,11 @@
 ---
 # proxmox_servers.yml
 
-- hosts: proxmox
+- hosts: proxmox_servers
   roles:
     - common
     - postfix
     - rsyslog
-#    - tmux
+    - tmux
     - proxmox
 ...

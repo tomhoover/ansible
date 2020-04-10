@@ -1,42 +1,89 @@
 # hosts
 
-[apt_servers]
-debian[1:2]
-gabriel
-ha
+[archivebox_servers]
+archivebox
+
+[db_servers]
 influxdb
 mariadb
-pihole[1:2]
-plex
 postgresql
+
+[debian_servers]
+debian[1:2]
+
+[hass_servers]
+ha
+
+[media_servers]
+gabriel
+plex
+
+[nextcloud_servers]
+nc
+
+[pihole_servers]
+pihole[1:3]
+
+[plex_servers]
+plex
+
+[postgres_servers]
+postgresql
+
+[proxmox_servers]
 pvhost[1:3]
+
+#[samba_servers]
+#debian2
+
+[ubuntu_servers]
+ubuntu1
+
+[web_servers]
+heimdall
+
+[zoneminder_servers]
 zoneminder
 
-[db]
-influxdb
-mariadb
-postgresql
+[RouterOS]
+mt-r1 ansible_ssh_host=10.10.10.10 ansible_ssh_user=admin ansible_ssh_pass=your_pass ansible_network_os=routeros
 
-[debian]
-debian[1:2]
+#[IOS]
+#sw2 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
 
-[hass]
-ha
+#[IOSSB]
+#sw4 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
 
-[media]
-gabriel
+#[EdgeOS]
+#usg1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=edgeos
 
-[pihole]
-pihole[1:2]
+#[VyOS]
+#vr1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=vyos
 
-[postgres]
-postgresql
+[DEBIAN_OS:children]
+archivebox_servers
+db_servers
+debian_servers
+hass_servers
+media_servers
+nextcloud_servers
+pihole_servers
+postgres_servers
+proxmox_servers
+#samba_servers
+web_servers
+zoneminder_servers
 
-[proxmox]
-pvhost[1:3]
+[UBUNTU_OS:children]
+ubuntu_servers
 
-[samba]
-debian2
+[APT:children]
+DEBIAN_OS
+UBUNTU_OS
 
-[web]
-#heimdall.t0m.us
+#[APT:vars]
+#ansible_ssh_user=tom
+
+[all:children]
+APT
+#RouterOS
