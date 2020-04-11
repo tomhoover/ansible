@@ -30,6 +30,7 @@
     - ~/src/github.com/tomhoover/simplesnap/simplesnapwrap
     - ~/src/github.com/zfsnap/zfsnap/sbin/zfsnap.sh
     - ~/src/github.com/jimsalterjrs/sanoid/syncoid
+    - zfs-syncoid.py
 
 - name: Copy /usr/local/share files
   copy:

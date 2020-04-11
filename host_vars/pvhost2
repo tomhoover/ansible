@@ -4,7 +4,7 @@
 backup_store: backups
 backup_host2: pvhost1
 backup_host3: pvhost3
-backup_sync_offset: 15
+backup_sync_offset: 20
 backup_disabled: ''
 cleanup_filesystems: backups tank
 snapshot_filesystems: rpool tank
