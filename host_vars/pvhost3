@@ -4,7 +4,8 @@
 backup_store: external/backups
 backup_host2: pvhost1
 backup_host3: pvhost2
-backup_sync_offset: 40
+backup_sync_offset: 30
+backup_disabled: '#'
 cleanup_filesystems: external
-snapshot_filesystems: pool rpool external/dump
+snapshot_filesystems: rpool pool/nvme-data
 ...

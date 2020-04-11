@@ -5,6 +5,7 @@ backup_store: external/backups
 backup_host2: pvhost2
 backup_host3: pvhost3
 backup_sync_offset: 0
+backup_disabled: ''
 cleanup_filesystems: external
-snapshot_filesystems: pool rpool external/dump external/influxdb external/mysql
+snapshot_filesystems: rpool pool
 ...

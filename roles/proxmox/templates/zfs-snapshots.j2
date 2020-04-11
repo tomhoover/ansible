@@ -10,32 +10,49 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 #-------------------------
 
 # ZFS sync snapshots
-00 * * * *   root simplesnap --host {{ inventory_hostname }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --local
-{{ ( 5 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host2 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
-{{ (15 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host3 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+#{{ backup_disabled }}00 * * * *   root simplesnap --host {{ inventory_hostname }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --local
+#{{ backup_disabled }}{{ (05 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host2 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+#{{ backup_disabled }}{{ (15 + backup_sync_offset)|int }} * * * *   root simplesnap --host {{ backup_host3 }}  --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
+{{ backup_disabled }}00 * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark rpool {{backup_store}}/{{ inventory_hostname }}/rpool
+{{ backup_disabled }}01 * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark pool  {{backup_store}}/{{ inventory_hostname }}/pool
+{{ backup_disabled }}02 * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark tank  {{backup_store}}/{{ inventory_hostname }}/tank
+{{ backup_disabled }}{{ (05 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host2 }}:rpool {{backup_store}}/{{ backup_host2 }}/rpool
+{{ backup_disabled }}{{ (06 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host2 }}:pool  {{backup_store}}/{{ backup_host2 }}/pool
+{{ backup_disabled }}{{ (07 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host2 }}:tank  {{backup_store}}/{{ backup_host2 }}/tank
+{{ backup_disabled }}{{ (15 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host3 }}:rpool {{backup_store}}/{{ backup_host3 }}/rpool
+{{ backup_disabled }}{{ (16 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host3 }}:pool  {{backup_store}}/{{ backup_host3 }}/pool
+{{ backup_disabled }}{{ (17 + backup_sync_offset)|int }} * * * *   root syncoid --quiet -r --no-sync-snap --create-bookmark root@{{ backup_host3 }}:tank  {{backup_store}}/{{ backup_host3 }}/tank
+
 #{{ (25 + backup_sync_offset)|int }} * * * *   root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
 
 #-------------------------
 
 # ZFS cleanup snapshots
-@daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             pool rpool > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             pool rpool > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- pool rpool > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           pool rpool > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv       -p 15min- -p daily- -p weekly- -p reboot- {{ cleanup_filesystems }}
+@daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           {{ snapshot_filesystems }} > /dev/null 2>&1
+{{ backup_disabled }}@daily       root zfsnap.sh destroy -rsSv       -p 15min- -p daily- -p weekly- -p reboot- {{ cleanup_filesystems }}
 
 #-------------------------
 
 # ZFS check
-@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
-@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
-@daily       root simplesnap --host pvhost3  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+#{{ backup_disabled }}@daily       root simplesnap --host pvhost1  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+#{{ backup_disabled }}@daily       root simplesnap --host pvhost2  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+#{{ backup_disabled }}@daily       root simplesnap --host pvhost3  --setname {{ inventory_hostname }} --store {{ backup_store }} --check "1 day ago"
+{{ backup_disabled }}@daily       root for x in $(zfs list -rH -o name); do test `date -d "$(zfs list -o creation -t snapshot $x 2>/dev/null | tail -1)" +%s` -gt `date -d "1 day ago" +%s` || (echo -n "`date -d \"$(zfs list -o creation -t snapshot $x 2>/dev/null | tail -1)\" +%F.%R` "; echo ": $x") ; done
+
 #@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
 
 #-------------------------
 
 # cleanup old .lock files
-@hourly      root find /mnt/backups/pvhost1/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost1/.lock’: No such file or directory"
-@hourly      root find /mnt/backups/pvhost2/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost2/.lock’: No such file or directory"
-@hourly      root find /mnt/backups/pvhost3/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/pvhost3/.lock’: No such file or directory"
-@hourly      root find /mnt/backups/ariel-wl/.lock  -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/mnt/backups/ariel-wl/.lock’: No such file or directory"
+{{ backup_disabled }}@hourly      root find /backups/pvhost1/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/backups/pvhost1/.lock’: No such file or directory"
+{{ backup_disabled }}@hourly      root find /backups/pvhost2/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/backups/pvhost2/.lock’: No such file or directory"
+{{ backup_disabled }}@hourly      root find /backups/pvhost3/.lock   -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/backups/pvhost3/.lock’: No such file or directory"
+{{ backup_disabled }}@hourly      root find /backups/ariel-wl/.lock  -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/backups/ariel-wl/.lock’: No such file or directory"
+
+#-------------------------
+
+# cleanup old backup files
+@daily       root find /backups/dump/* -mtime +30 -type f -delete
