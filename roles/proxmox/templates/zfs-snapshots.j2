@@ -9,13 +9,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 #-------------------------
 
-# ZFS sync snapshots
-{{ (05 + backup_sync_offset)|int }} * * * *   root /usr/local/sbin/zfs-syncoid.py 2>&1 | grep -v "cannot create bookmark .* bookmark exists" | grep -v "Cannot sync now .* is already target of a zfs receive process."
-
-#{{ (25 + backup_sync_offset)|int }} * * * *   root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --sshcmd "ssh -i /root/.ssh/id_rsa_simplesnap"
-
-#-------------------------
-
 # ZFS cleanup snapshots
 @daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             {{ snapshot_filesystems }} > /dev/null 2>&1
 @daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             {{ snapshot_filesystems }} > /dev/null 2>&1
@@ -25,15 +18,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 #-------------------------
 
-# ZFS check
-{{ backup_disabled }}@daily       root for x in $(zfs list -rH -o name); do test `date -d "$(zfs list -o creation -t snapshot $x 2>/dev/null | tail -1)" +%s` -gt `date -d "1 day ago" +%s` || (echo -n "`date -d \"$(zfs list -o creation -t snapshot $x 2>/dev/null | tail -1)\" +%F.%R` "; echo ": $x") ; done
+# ZFS sync & check snapshots
+{{ (05 + backup_sync_offset)|int }} * * * *   root /usr/local/sbin/zfs-syncoid.py 2>&1 | grep -v "cannot create bookmark .* bookmark exists" | grep -v "Cannot sync now: .* is already target of a zfs receive process."
 
-#@daily       root simplesnap --host ariel-wl --setname {{ inventory_hostname }} --store {{ backup_store }} --check "2 days ago"
-
-#-------------------------
-
-# cleanup old .lock files
-#{{ backup_disabled }}@hourly      root find /backups/ariel-wl/.lock  -mtime +1 -type f -delete 2>&1 | grep -v "find: ‘/backups/ariel-wl/.lock’: No such file or directory"
+@daily       root zfs-verify.py
 
 #-------------------------
 

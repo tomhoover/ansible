@@ -4,16 +4,14 @@
 
 import os
 import sys
-import subprocess
 import datetime
-
-myhost = os.uname()[1]
-args = ""
+import subprocess
 
 backup_store =        { "pvhost1": "external/backups", 
                         "pvhost2": "backups", 
                         "pvhost3": "" }
-backup_filesystems =  { "pvhost1": "rpool pool", 
+backup_filesystems =  { "ariel-wl": "tank",
+                        "pvhost1": "rpool pool", 
                         "pvhost2": "rpool tank", 
                         "pvhost3": "rpool pool" }
 
@@ -29,11 +27,16 @@ def sync_it(host):
                 sync_command = "syncoid %s --recursive --no-sync-snap --create-bookmark root@%s:%s %s/%s/%s" % (args, host, filesystem, backup_store[myhost], host, filesystem)
             subprocess.run(sync_command.split())
 
+# main
+
+args = ""
+myhost = os.uname()[1]
+
 total = len(sys.argv)
 if total >= 2:  # at least one argument has been passed
     args = " ".join(sys.argv[1:])
 
-if not "--no-quiet" in args and str(datetime.datetime.now().hour) != '0':
+if not "--no-quiet" in args and str(datetime.datetime.now().hour) != '0' and not os.isatty(sys.stdout.fileno()):    # execute quietly if run via cron, except once daily or if '--no-quiet' arg is passed
     args = args + " --quiet"
 else:
     args = args.replace('--no-quiet', '')
