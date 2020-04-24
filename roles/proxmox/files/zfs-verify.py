@@ -7,7 +7,7 @@ import sys
 import time
 import subprocess
 
-max_snapshot_age = 24   # in hours
+MAX_SNAPSHOT_AGE = 24   # in hours
 
 ignored_filesystems =   { "ariel":   "",
                           "pvhost1": "external external/backups external/backups/ariel-wl external/backups/dump external/backups/hass external/backups/pvhost1 external/backups/pvhost1/external external/backups/pvhost2 external/backups/pvhost3 external/backups/pvhost3/pool external/backups/z_old external/backups/z_old/** external/bethel-image external/pve-backups external/pve-templates", 
@@ -76,8 +76,8 @@ for filesystem in filesystems():
         snapshot_datetime= time.mktime(time.strptime(sd, "%a %b %d %H:%M %Y"))      # Fri Apr 17 16:00 2020
         current_datetime= time.time()
 
-        if current_datetime > snapshot_datetime + (max_snapshot_age * 60 * 60):    # convert max_snapshot_age to seconds before comparison
-            print("%s%s%s : last snapshot was %s%s%s, which was more than %s hours ago" % (Blue, filesystem, Default, Red, sd, Default, str(max_snapshot_age)))
+        if current_datetime > snapshot_datetime + (MAX_SNAPSHOT_AGE * 60 * 60):    # convert MAX_SNAPSHOT_AGE to seconds before comparison
+            print("%s%s%s : last snapshot was %s%s%s, which was more than %s hours ago" % (Blue, filesystem, Default, Red, sd, Default, str(MAX_SNAPSHOT_AGE)))
         else:
             if os.isatty(sys.stdout.fileno()) and not "--quiet" in args:
                 print("%s%s%s : %s%s%s" % (Blue, filesystem, Default, Green, sd, Default))
