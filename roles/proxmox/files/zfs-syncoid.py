@@ -19,13 +19,29 @@ def sync_it(host):
     if backup_store[myhost]:
         filesystems = backup_filesystems[host].split()
         for filesystem in filesystems:
-            if not "--quiet" in args:
-                subprocess.run(["echo", "\n#### ", host, ":", filesystem, " ---> ", myhost, ":", backup_store[myhost], "/", host, "/", filesystem, " ####\n"])
             if host == myhost:  # localhost
+                fs_check_command = "zfs list -H -o name %s" % (filesystem)
                 sync_command = "syncoid %s --recursive --no-sync-snap --create-bookmark %s %s/%s/%s" % (args, filesystem, backup_store[myhost], host, filesystem)
             else:
+                fs_check_command = "ssh %s zfs list -H -o name %s" % (host, filesystem)
                 sync_command = "syncoid %s --recursive --no-sync-snap --create-bookmark root@%s:%s %s/%s/%s" % (args, host, filesystem, backup_store[myhost], host, filesystem)
-            subprocess.run(sync_command.split())
+
+            # verify backup_store is mounted
+            bs_check_command = "zfs list -H -o name %s" % (backup_store[myhost])
+            c = subprocess.run(bs_check_command.split(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            if not c.returncode == 0:       # if backup_store is not mounted, then break
+                break
+
+            # verify filesystem is mounted
+            c = subprocess.run(fs_check_command.split(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            if not c.returncode == 0:       # if filesystem is not mounted, then break
+                break
+
+            if not "--quiet" in args:
+                subprocess.run(["echo", "\n#### ", host, ":", filesystem, " ---> ", myhost, ":", backup_store[myhost], "/", host, "/", filesystem, " ####\n"])
+
+            c = subprocess.run(sync_command.split())
+            # print(c)
 
 # main
 
