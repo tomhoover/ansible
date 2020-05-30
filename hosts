@@ -33,6 +33,9 @@ postgresql
 [proxmox_servers]
 pvhost[1:3]
 
+[pxe_servers]
+pxe-server
+
 #[samba_servers]
 #debian2
 
@@ -70,6 +73,7 @@ nextcloud_servers
 pihole_servers
 postgres_servers
 proxmox_servers
+pxe_servers
 #samba_servers
 web_servers
 zoneminder_servers

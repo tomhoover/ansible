@@ -12,6 +12,7 @@
 - import_playbook: plex_servers.yml
 - import_playbook: postgres_servers.yml
 - import_playbook: proxmox_servers.yml
+- import_playbook: pxe_servers.yml
 #- import_playbook: samba_servers.yml
 - import_playbook: ubuntu_servers.yml
 - import_playbook: web_servers.yml
