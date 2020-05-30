@@ -11,7 +11,7 @@ MAX_SNAPSHOT_AGE = 24   # in hours
 
 ignored_filesystems =   { "ariel":   "",
                           "pvhost1": "external external/backups external/backups/ariel-wl external/backups/dump external/backups/hass external/backups/pvhost1 external/backups/pvhost1/external external/backups/pvhost2 external/backups/pvhost3 external/backups/pvhost3/pool external/backups/z_old external/backups/z_old/** external/bethel-image external/pve-backups external/pve-templates", 
-                          "pvhost2": "backups backups/ariel-wl backups/dump backups/external backups/pvhost1 backups/pvhost1/external backups/pvhost2 backups/pvhost3 backups/pvhost3/pool backups/rsync backups/tar backups/unraid backups/unraid/** backups/z_old backups/z_old/** d11 d11/11 d12 d12/12 d13 d13/13 d15 d15/15 d16 d16/16 d17 d17/17 d18 d18/18 d19 d19/19 d20 d20/20 p21 p21/21 p25 p25/25", 
+                          "pvhost2": "backups backups/ariel-wl backups/arq backups/dump backups/external backups/pvhost1 backups/pvhost1/external backups/pvhost2 backups/pvhost3 backups/pvhost3/pool backups/rsync backups/tar backups/unraid backups/unraid/** backups/z_old backups/z_old/** d11 d11/11 d12 d12/12 d13 d13/13 d15 d15/15 d16 d16/16 d17 d17/17 d18 d18/18 d19 d19/19 d20 d20/20 p21 p21/21 p25 p25/25", 
                           "pvhost3": "pool pool/backups pool/backups/dump" }
 
 def filesystems():                  # list all zfs filesystems
