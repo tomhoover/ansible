@@ -1,0 +1,17 @@
+---
+# docker_servers.yml
+
+- hosts: docker_servers
+  remote_user: root
+  vars:
+    docker_users:
+      - tom
+
+  roles:
+    - common
+    - geerlingguy.postfix
+    - postfix
+    - rsyslog
+#    - tmux
+    - geerlingguy.docker
+...
