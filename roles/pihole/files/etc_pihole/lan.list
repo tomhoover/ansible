@@ -14,13 +14,23 @@
 192.168.2.9	sonarr.t0m.us
 192.168.2.9	tautulli.t0m.us
 #192.168.2.9	transmission.t0m.us
-192.168.2.10    pvhost1 pvhost1.local
-192.168.2.11    pvhost2 pvhost2.local
-192.168.2.12    pvhost3 pvhost3.local
-192.168.2.14    nc.t0m.us
-192.168.2.19	plex.t0m.us
-192.168.2.55	influxdb.t0m.us
-#192.168.2.56	mariadb.t0m.us
-192.168.2.57	postgresql.t0m.us
+192.168.2.10    pvhost1.t0m.us pvhost1 pvhost1.local
+192.168.2.11    pvhost2.t0m.us pvhost2 pvhost2.local
+192.168.2.12    pvhost3.t0m.us pvhost3 pvhost3.local
+192.168.2.14    nc.t0m.us nc nc.local
+192.168.2.18	plex.t0m.us plex plex.local
+192.168.2.55	influxdb.t0m.us influxdb
+192.168.2.56	mariadb.t0m.us mariadb
+192.168.2.57	postgresql.t0m.us postgresql
+192.168.2.60    pizw-0
 #192.168.2.90	duplicacy.duckdns.org
 #192.168.2.90	restic.duckdns.org
+192.168.2.92	zoneminder.t0m.us zoneminder zoneminder.local
+192.168.2.102	duplicacy.t0m.us duplicacy
+192.168.2.105	git.t0m.us git git.local
+192.168.2.107	rsyslog.t0m.us rsyslog
+192.168.2.127   alertmgr1.t0m.us alertmgr1
+192.168.2.128   alertmgr2.t0m.us alertmgr2
+192.168.2.129   prometheus1.t0m.us prometheus1
+192.168.2.130   prometheus2.t0m.us prometheus2
+192.168.2.131   dhost1.t0m.us dhost1
