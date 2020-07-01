@@ -1,5 +1,5 @@
 ---
-# group_vars/proxmox_servers
+# group_vars/docker-host_servers
 
 # https://docs.ansible.com/ansible/2.8/reference_appendices/interpreter_discovery.html
 ansible_python_interpreter: auto_legacy_silent
