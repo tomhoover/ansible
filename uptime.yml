@@ -1,7 +1,6 @@
 ---
-# uptime.yml
-
-- hosts:
+- name: uptime.yml
+  hosts:
     - localhost
 
   tasks:
