@@ -1,7 +1,7 @@
 ---
-# proxmox_servers.yml
+- name: proxmox_servers.yml
+  hosts: proxmox_servers
 
-- hosts: proxmox_servers
   roles:
     - common
     - postfix

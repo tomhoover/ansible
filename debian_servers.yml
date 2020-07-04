@@ -1,7 +1,7 @@
 ---
-# debian_servers.yml
+- name: debian_servers.yml
+  hosts: debian_servers
 
-- hosts: debian_servers
   roles:
     - common
     - postfix

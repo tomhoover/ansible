@@ -1,7 +1,7 @@
 ---
-# pihole_servers.yml
+- name: pihole_servers.yml
+  hosts: pihole_servers
 
-- hosts: pihole_servers
   roles:
     - common
 #    - postfix

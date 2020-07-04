@@ -1,0 +1,19 @@
+---
+- name: pxe_servers.yml
+  hosts: pxe_servers
+
+  roles:
+    - common
+    - postfix
+    - rsyslog
+    - tmux
+#  handlers:
+
+  tasks:
+    - name: Install packages
+      apt:
+        pkg:
+        - dnsmasq
+        - pxelinux
+        - syslinux-common
+...

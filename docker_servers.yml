@@ -1,8 +1,7 @@
 ---
-# docker_servers.yml
+- name: docker_servers.yml
+  hosts: docker_servers
 
-- hosts: docker_servers
-  remote_user: root
   vars:
     docker_users:
       - tom

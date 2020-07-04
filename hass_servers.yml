@@ -1,8 +1,7 @@
 ---
-# hass_servers.yml
+- name: hass_servers.yml
+  hosts: hass_servers
 
-- hosts: hass_servers
-  remote_user: root
   roles:
     - common
 #    - postfix

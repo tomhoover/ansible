@@ -1,9 +1,6 @@
 ---
-# plex.yml
-
-- hosts: plex_servers
-#  remote_user: root
-#  vars:
+- name: plex_servers.yml
+  hosts: plex_servers
 
   roles:
     - common

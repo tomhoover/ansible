@@ -1,8 +1,7 @@
 ---
-# media_servers.yml
+- name: media_servers.yml
+  hosts: media_servers
 
-- hosts: media_servers
-  remote_user: root
   roles:
     - common
 #    - postfix

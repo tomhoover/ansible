@@ -1,7 +1,7 @@
 ---
-# samba_servers.yml
+- name: samba_servers.yml
+  hosts: samba_servers
 
-- hosts: samba_servers
   roles:
     - common
 #    - postfix
