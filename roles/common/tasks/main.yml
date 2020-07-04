@@ -11,6 +11,9 @@
     pkg:
     - etckeeper
     - mc
+    - sudo
+    - vim
+    - zsh
 
 - name: Remove useless packages from the cache
   apt:
