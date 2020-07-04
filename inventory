@@ -1,5 +1,18 @@
 # hosts
 
+[laptops]
+ariel
+ariel-wl
+theophilus
+
+[docker_containers]
+heimdall.t0m.us
+
+[duplicacy_clients]
+theophilus
+
+# -----
+
 [alertmgr_servers]
 alertmgr[1:2]
 
@@ -16,9 +29,6 @@ debian1
 
 [docker_servers]
 dhost1
-
-[duplicacy_clients]
-theophilus
 
 [duplicacy_servers]
 duplicacy
@@ -60,33 +70,36 @@ pxe-server
 [rsyslog_servers]
 rsyslog
 
-#[samba_servers]
-#debian2
+# [samba_servers]
+# debian2
 
 [ubuntu_servers]
 ezekiel
 ubuntu1
 
-[web_servers]
-heimdall.t0m.us
+# [web_servers]
+# heimdall.t0m.us
 
 [zoneminder_servers]
 zoneminder
 
-#[RouterOS]
-#mt-r1 ansible_ssh_host=10.10.10.10 ansible_ssh_user=admin ansible_ssh_pass=your_pass ansible_network_os=routeros
+# [RouterOS]
+# mt-r1 ansible_ssh_host=10.10.10.10 ansible_ssh_user=admin ansible_ssh_pass=your_pass ansible_network_os=routeros
 
-#[IOS]
-#sw2 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
+# [IOS]
+# sw2 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
 
-#[IOSSB]
-#sw4 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
+# [IOSSB]
+# sw4 ansible_host=your_ip_addr ansible_user=your_user ansible_ssh_pass=your_pass
 
-#[EdgeOS]
-#usg1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=edgeos
+# [EdgeOS]
+# usg1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=edgeos
 
-#[VyOS]
-#vr1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=vyos
+# [VyOS]
+# vr1 ansible_ssh_host=your_ip_addr ansible_ssh_user=your_user ansible_ssh_pass=your_pass ansible_network_os=vyos
+
+[ARCH_OS]
+theophilus
 
 [DEBIAN_OS:children]
 alertmgr_servers
@@ -94,7 +107,7 @@ archivebox_servers
 db_servers
 debian_servers
 docker_servers
-duplicacy_clients
+# duplicacy_clients (as theophilus is included in this group)
 duplicacy_servers
 gitolite_servers
 haproxy_servers
@@ -108,8 +121,8 @@ prometheus_servers
 proxmox_servers
 pxe_servers
 rsyslog_servers
-#samba_servers
-web_servers
+# samba_servers
+# web_servers
 zoneminder_servers
 
 [UBUNTU_OS:children]
@@ -124,4 +137,5 @@ UBUNTU_OS
 
 [all:children]
 APT
+ARCH_OS
 #RouterOS
