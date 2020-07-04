@@ -1,6 +1,7 @@
 ---
 # site.yml
 
+# - import_playbook: _setup_ansible_target.yml
 # - import_playbook: backup_network_devices.yml
 # - import_playbook: archivebox_servers.yml
 - import_playbook: db_servers.yml
@@ -18,7 +19,7 @@
 - import_playbook: proxmox_servers.yml
 # - import_playbook: pxe_servers.yml
 # - import_playbook: samba_servers.yml
-- import_playbook: ubuntu_servers.yml
-- import_playbook: web_servers.yml
+# - import_playbook: ubuntu_servers.yml
+# - import_playbook: web_servers.yml
 # - import_playbook: zoneminder_servers.yml
 ...
