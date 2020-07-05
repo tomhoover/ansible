@@ -1,4 +1,4 @@
 # ansible-galaxy install -r requirements.yml
 
-- src: geerlingguy.postfix
+#- src: geerlingguy.postfix
 - src: geerlingguy.docker

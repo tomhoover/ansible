@@ -8,9 +8,8 @@
 
   roles:
     - common
-    - geerlingguy.postfix
     - postfix
     - rsyslog
-#    - tmux
+    - tmux
     - geerlingguy.docker
 ...
