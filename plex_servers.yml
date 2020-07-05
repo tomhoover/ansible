@@ -6,7 +6,7 @@
     - common
     - postfix
     - rsyslog
-#    - tmux
+    - tmux
 
   tasks:
     - name: Add plex apt-key

@@ -4,8 +4,8 @@
 
   roles:
     - common
-#    - postfix
+    - postfix
 #    - rsyslog
-#    - tmux
+    - tmux
     - pihole
 ...

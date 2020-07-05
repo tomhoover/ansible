@@ -4,7 +4,7 @@
 
   roles:
     - common
-#    - postfix
-#    - rsyslog
+    - postfix
+    - rsyslog
     - tmux
 ...
