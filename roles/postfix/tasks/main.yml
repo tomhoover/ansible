@@ -1,6 +1,11 @@
 ---
 # tasks file for postfix
 
+- name: Ensure postfix is installed
+  package:
+    name: postfix
+    state: present
+
 - name: Copy main.cf file to /etc/postfix
   template:
     src: main.cf.j2
@@ -13,7 +18,13 @@
 - name: Copy /root/.forward file
   copy:
     src: root/
-    dest: /root
+    dest: /root/
     mode: 0644
     force: no       # do not overwrite existing file
+
+- name: Ensure postfix is started and enabled at boot.
+  service:
+    name: postfix
+    state: started
+    enabled: yes
 ...
