@@ -8,26 +8,64 @@
     - fonts-powerline
     - mosh
 
-- name: Copy .tmux.conf file
-  copy:
-    src: ~/.tmux.conf
-    dest: ~/
+- name: download grml-config files for 'tom' (.tmux.conf)
+  get_url:
+    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
+    dest: /home/tom/.tmux.conf
+    owner: tom
+    group: tom
+    mode: 0644
+    force: yes
+    backup: yes
 
-- name: Copy .tmux.remote.conf file
-  copy:
-    src: ~/.tmux/tmux.remote.conf
-    dest: ~/.tmux/
+- name: download grml-config files for 'root' (.tmux.conf)
+  get_url:
+    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
+    dest: /root/.tmux.conf
+    owner: root
+    group: root
+    mode: 0644
+    force: yes
+    backup: yes
 
-- name: Copy .tmux files
-  copy:
-    src: "{{ item }}"
-    dest: ~/.tmux/
-    mode: 0755
-  loop:
-    - ~/.tmux/renew_env.sh
-    - ~/.tmux/yank.sh
+#- name: Copy .tmux.conf file
+#  copy:
+#    src: ~/.tmux.conf
+#    dest: ~/
+#
+#- name: Copy .tmux.remote.conf file
+#  copy:
+#    src: ~/.tmux/tmux.remote.conf
+#    dest: ~/.tmux/
+#
+#- name: Copy .tmux files
+#  copy:
+#    src: "{{ item }}"
+#    dest: ~/.tmux/
+#    mode: 0755
+#  loop:
+#    - ~/.tmux/renew_env.sh
+#    - ~/.tmux/yank.sh
 
-- name: Autostart tmux upon login shell
+- name: Autostart tmux upon login shell for 'tom'
+  blockinfile:
+    path: /home/tom/.zprofile
+    block: |
+      # inspired by https://jpmens.net/2019/04/28/automatically-start-or-attach-tmux-in-ssh-session/
+      test -n "$SSH_TTY" && {
+          TMUX_TMPDIR=$HOME/tmp
+          export TMUX_TMPDIR
+          test -d $TMUX_TMPDIR || mkdir -p $TMUX_TMPDIR
+          command -v tmux &> /dev/null && test -z "$TMUX" -a -n "$SSH_CONNECTION" && exec tmux new -As default
+      }
+    backup: yes
+    create: yes
+    owner: tom
+    group: tom
+    mode: 0644
+    insertbefore: BOF
+
+- name: Autostart tmux upon login shell for 'root'
   blockinfile:
     path: /root/.profile
     block: |
