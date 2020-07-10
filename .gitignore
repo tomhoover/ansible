@@ -1,3 +1,4 @@
-z/
+playbooks/
 roles/geerlingguy.*
 vaults/_passwords.yml
+z/
