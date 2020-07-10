@@ -3,7 +3,6 @@
 192.168.2.5     haproxy
 192.168.2.7     theophilus
 192.168.2.8     ezekiel
-
 192.168.2.9     gabriel
 192.168.2.9     t0m.us
 192.168.2.9     www.t0m.us
@@ -14,14 +13,11 @@
 192.168.2.9     nzbget.t0m.us
 192.168.2.9     nzbhydra.t0m.us
 192.168.2.9     ombi.t0m.us
-#192.168.2.9    organizr.t0m.us
-#192.168.2.9    phpmyadmin.t0m.us
 192.168.2.9     portainer.t0m.us
 192.168.2.9     radarr.t0m.us
 192.168.2.9     sonarr.t0m.us
 192.168.2.9     tautulli.t0m.us
 #192.168.2.9    transmission.t0m.us
-
 192.168.2.10    pvhost1
 192.168.2.11    pvhost2
 192.168.2.12    pvhost3
@@ -63,3 +59,7 @@
 192.168.2.129   prometheus1
 192.168.2.130   prometheus2
 192.168.2.131   dhost1
+192.168.2.132   k3s-master
+192.168.2.133   k3s-worker1
+192.168.2.134   k3s-worker2
+192.168.2.135   k3s-worker3

@@ -1,6 +1,6 @@
 ---
-- name: pxe_servers.yml
-  hosts: pxe_servers
+- name: k3s_servers.yml
+  hosts: k3s_cluster
 
   roles:
     - common
@@ -12,7 +12,5 @@
     - name: Install packages
       apt:
         pkg:
-        - dnsmasq
-        - pxelinux
-        - syslinux-common
+        - nfs-common
 ...
