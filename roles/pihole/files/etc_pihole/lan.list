@@ -59,7 +59,7 @@
 192.168.2.129   prometheus1
 192.168.2.130   prometheus2
 192.168.2.131   dhost1
-# 192.168.2.132   k3s-master
+192.168.2.132   k3s-master
 192.168.2.193   k3s-master1
 192.168.2.194   k3s-master2
 192.168.2.195   k3s-master3
