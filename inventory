@@ -42,14 +42,15 @@ haproxy
 [hass_servers]
 ha
 
-[k3s_master]
+[k3s_masters]
 k3s-master
+k3s-master[1:3]
 
 [k3s_workers]
 k3s-worker[1:3]
 
 [k3s_cluster:children]
-k3s_master
+k3s_masters
 k3s_workers
 
 [media_servers]

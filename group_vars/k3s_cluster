@@ -1,5 +1,5 @@
 ---
-# group_vars/k3s_servers
+# group_vars/k3s_cluster
 
 # https://docs.ansible.com/ansible/2.8/reference_appendices/interpreter_discovery.html
 ansible_python_interpreter: auto_legacy_silent
