@@ -10,8 +10,30 @@
   template:
     src: main.cf.j2
     dest: /etc/postfix/main.cf
+    owner: root
+    group: root
     mode: 0644
     backup: yes
+  notify:
+    - restart postfix
+
+- name: Copy sasl_passwd file to /etc/postfix
+  copy:
+    src: ~/.config/postfix/sasl_passwd
+    dest: /etc/postfix/sasl_passwd
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart postfix
+
+- name: Copy sasl_passwd.db file to /etc/postfix
+  copy:
+    src: ~/.config/postfix/sasl_passwd.db
+    dest: /etc/postfix/sasl_passwd.db
+    owner: root
+    group: root
+    mode: 0644
   notify:
     - restart postfix
 
