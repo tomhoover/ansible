@@ -8,6 +8,8 @@
     - rsyslog
     - { role: tmux, username: tom }
     - { role: tmux, username: root }
+    - { role: user-config, username: tom }
+    - { role: user-config, username: root }
 
 #  tasks:
 #    - name: Add plex apt-key

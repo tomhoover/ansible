@@ -1,0 +1,74 @@
+---
+# tasks file for user-config
+
+- set_fact:
+    home_dir: "/home"
+- set_fact:
+    home_dir: ""
+  when: username == "root"
+
+- name: download grml-config file (.tmux.conf) for user '{{ username }}'
+  get_url:
+    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
+    dest: "{{ home_dir }}/{{ username }}/.tmux.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    force: yes
+    backup: yes
+- name: download grml-config file (.vimrc) for user '{{ username }}'
+  get_url:
+    url: http://git.grml.org/f/grml-etc-core/etc/vim/vimrc
+    dest: "{{ home_dir }}/{{ username }}/.vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    force: yes
+    backup: yes
+- name: download grml-config file (.zshrc) for user '{{ username }}'
+  get_url:
+    url: http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
+    dest: "{{ home_dir }}/{{ username }}/.zshrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    force: yes
+    backup: yes
+
+- name: copy grml-config file (.zshrc.local) for user '{{ username }}'
+  copy:
+    src: ~/.zshrc.local
+    dest: "{{ home_dir }}/{{ username }}/.zshrc.local"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    force: yes
+    backup: yes
+
+- name: copy .config files for user '{{ username }}'
+  copy:
+    src: "~/.config/{{ item }}"
+    dest: "{{ home_dir }}/{{ username }}/.config/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    local_follow: yes
+    force: yes
+    backup: yes
+  loop:
+    - liquidpromptrc
+
+- name: copy .local/share files for user '{{ username }}'
+  copy:
+    src: "~/.local/share/{{ item }}"
+    dest: "{{ home_dir }}/{{ username }}/.local/share/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    local_follow: yes
+    force: yes
+    backup: yes
+  loop:
+    - liquidprompt
+    - z.sh
+...
