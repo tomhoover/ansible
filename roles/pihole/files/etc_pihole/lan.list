@@ -53,7 +53,7 @@
 192.168.2.107   rsyslog
 192.168.2.110   win10
 192.168.2.111   ha
-192.168.2.112   hassio
+192.168.2.112   homeassistant
 192.168.2.127   alertmgr1
 192.168.2.128   alertmgr2
 192.168.2.129   prometheus1
