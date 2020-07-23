@@ -10,6 +10,7 @@
     - common
     - postfix
     - rsyslog
-    - tmux
+    - { role: tmux, username: tom }
+    - { role: tmux, username: root }
     - geerlingguy.docker
 ...

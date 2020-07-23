@@ -6,7 +6,8 @@
     - common
     - postfix
     - rsyslog
-    - tmux
+    - { role: tmux, username: tom }
+    - { role: tmux, username: root }
 
   tasks:
     - name: Install packages

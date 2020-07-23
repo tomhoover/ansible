@@ -6,8 +6,8 @@
     - common
     - postfix
     - rsyslog
-    - tmux
-#  handlers:
+    - { role: tmux, username: tom }
+    - { role: tmux, username: root }
 
 #  tasks:
 #    - name: Add plex apt-key

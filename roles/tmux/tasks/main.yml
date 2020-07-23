@@ -8,48 +8,15 @@
     - fonts-powerline
     - mosh
 
-- name: download grml-config files for 'tom' (.tmux.conf)
-  get_url:
-    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
-    dest: /home/tom/.tmux.conf
-    owner: tom
-    group: tom
-    mode: 0644
-    force: yes
-    backup: yes
+- set_fact:
+    home_dir: "/home"
+- set_fact:
+    home_dir: ""
+  when: username == "root"
 
-- name: download grml-config files for 'root' (.tmux.conf)
-  get_url:
-    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
-    dest: /root/.tmux.conf
-    owner: root
-    group: root
-    mode: 0644
-    force: yes
-    backup: yes
-
-#- name: Copy .tmux.conf file
-#  copy:
-#    src: ~/.tmux.conf
-#    dest: ~/
-#
-#- name: Copy .tmux.remote.conf file
-#  copy:
-#    src: ~/.tmux/tmux.remote.conf
-#    dest: ~/.tmux/
-#
-#- name: Copy .tmux files
-#  copy:
-#    src: "{{ item }}"
-#    dest: ~/.tmux/
-#    mode: 0755
-#  loop:
-#    - ~/.tmux/renew_env.sh
-#    - ~/.tmux/yank.sh
-
-- name: Autostart tmux upon login shell for 'tom'
+- name: Autostart tmux upon zsh login shell for '{{ username }}'
   blockinfile:
-    path: /home/tom/.zprofile
+    path: "{{ home_dir }}/{{ username }}/.zprofile"
     block: |
       # inspired by https://jpmens.net/2019/04/28/automatically-start-or-attach-tmux-in-ssh-session/
       test -n "$SSH_TTY" && {
@@ -60,8 +27,8 @@
       }
     backup: yes
     create: yes
-    owner: tom
-    group: tom
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: 0644
     insertbefore: BOF
 
