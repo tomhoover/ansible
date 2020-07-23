@@ -6,6 +6,11 @@
     name: postfix
     state: present
 
+- name: Install packages
+  apt:
+    pkg:
+    - libsasl2-modules
+
 - name: Copy main.cf file to /etc/postfix
   template:
     src: main.cf.j2
