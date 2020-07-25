@@ -58,6 +58,19 @@
   loop:
     - liquidpromptrc
 
+- name: copy .config/mc files for user '{{ username }}'
+  copy:
+    src: "~/.config/mc/{{ item }}"
+    dest: "{{ home_dir }}/{{ username }}/.config/mc/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+    local_follow: yes
+    force: yes
+    backup: yes
+  loop:
+    - ini
+
 - name: copy .local/share files for user '{{ username }}'
   copy:
     src: "~/.local/share/{{ item }}"
