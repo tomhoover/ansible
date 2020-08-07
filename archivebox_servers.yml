@@ -1,6 +1,21 @@
 ---
-- name: archivebox_servers.yml
+- name: check reachable archivebox_servers
   hosts: archivebox_servers
+  gather_facts: no
+  become: false
+  tasks:
+    - command: ping -c1 {{ inventory_hostname }}
+      delegate_to: localhost
+      register: ping_result
+      ignore_errors: true
+      failed_when: false
+    - group_by: key=reachable
+      when: "ping_result.rc == 0"
+
+- name: archivebox_servers.yml
+  # hosts: archivebox_servers
+  hosts: reachable
+  gather_facts: no
 
   roles:
     - common
