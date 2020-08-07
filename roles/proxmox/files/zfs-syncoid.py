@@ -10,7 +10,7 @@ import subprocess
 backup_store =        { "pvhost1": "external/backups", 
                         "pvhost2": "backups", 
                         "pvhost3": "external/backups" }
-backup_filesystems =  { "ariel-wl": "tank",
+backup_filesystems =  { "freenas": "pool pve tank", 
                         "pvhost1": "rpool pool", 
                         "pvhost2": "rpool tank", 
                         "pvhost3": "rpool pool" }
