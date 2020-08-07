@@ -1,5 +1,5 @@
 192.168.2.3     ariel-wl
-192.168.2.4     bethel
+192.168.2.4     freenas
 192.168.2.5     haproxy
 192.168.2.7     theophilus
 192.168.2.8     ezekiel
@@ -54,6 +54,7 @@
 192.168.2.110   win10
 192.168.2.111   ha
 192.168.2.112   homeassistant
+192.168.2.123   archivebox
 192.168.2.127   alertmgr1
 192.168.2.128   alertmgr2
 192.168.2.129   prometheus1
@@ -63,6 +64,6 @@
 192.168.2.193   k3s-master1
 192.168.2.194   k3s-master2
 192.168.2.195   k3s-master3
-192.168.2.196   k3s-worker1
-192.168.2.197   k3s-worker2
-192.168.2.198   k3s-worker3
+192.168.2.196   k3s-slave1
+192.168.2.197   k3s-slave2
+192.168.2.198   k3s-slave3
