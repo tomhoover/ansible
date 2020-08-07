@@ -1,6 +1,7 @@
 ---
 - name: docker_servers.yml
   hosts: docker_servers
+  # gather_facts: no
 
   vars:
     docker_users:

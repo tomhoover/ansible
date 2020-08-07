@@ -1,6 +1,7 @@
 ---
 - name: media_servers.yml
   hosts: media_servers
+  gather_facts: no
 
   roles:
     - common

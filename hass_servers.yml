@@ -1,6 +1,7 @@
 ---
 - name: hass_servers.yml
   hosts: hass_servers
+  gather_facts: no
 
   roles:
     - common

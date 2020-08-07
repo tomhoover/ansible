@@ -1,6 +1,7 @@
 ---
 - name: debian_servers.yml
   hosts: debian_servers
+  gather_facts: no
 
   roles:
     - common

@@ -1,6 +1,7 @@
 ---
 - name: postgres_servers.yml
   hosts: postgres_servers
+  gather_facts: no
 
   roles:
     - common

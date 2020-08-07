@@ -1,6 +1,7 @@
 ---
 - name: db_servers.yml
   hosts: db_servers
+  gather_facts: no
 
   roles:
     - common

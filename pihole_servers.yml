@@ -1,6 +1,7 @@
 ---
 - name: pihole_servers.yml
   hosts: pihole_servers
+  gather_facts: no
 
   roles:
     - common

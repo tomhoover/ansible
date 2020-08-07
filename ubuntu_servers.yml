@@ -1,6 +1,7 @@
 ---
 - name: ubuntu_servers.yml
   hosts: ubuntu_servers
+  gather_facts: no
 
   user: tom
   become: yes

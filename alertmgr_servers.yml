@@ -1,6 +1,7 @@
 ---
 - name: alertmgr_servers.yml
   hosts: alertmgr_servers
+  gather_facts: no
 
   roles:
     - common

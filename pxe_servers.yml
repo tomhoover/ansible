@@ -1,6 +1,7 @@
 ---
 - name: pxe_servers.yml
   hosts: pxe_servers
+  gather_facts: no
 
   roles:
     - common

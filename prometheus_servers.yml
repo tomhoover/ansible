@@ -1,6 +1,7 @@
 ---
 - name: prometheus_servers.yml
   hosts: prometheus_servers
+  gather_facts: no
 
   roles:
     - common

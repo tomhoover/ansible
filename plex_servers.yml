@@ -1,6 +1,7 @@
 ---
 - name: plex_servers.yml
   hosts: plex_servers
+  gather_facts: no
 
   roles:
     - common
