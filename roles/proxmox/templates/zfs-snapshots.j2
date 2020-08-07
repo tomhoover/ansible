@@ -19,7 +19,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 #-------------------------
 
 # ZFS sync & check snapshots
-{{ (05 + backup_sync_offset)|int }} * * * *   root /usr/local/sbin/zfs-syncoid.py 2>&1 | grep -v "cannot create bookmark .* bookmark exists" | grep -v "Cannot sync now: .* is already target of a zfs receive process."
+05 {{ (backup_sync_offset)|int }}-{{ (21 + backup_sync_offset)|int }}/3 * * *   root /usr/local/sbin/zfs-syncoid.py 2>&1 | grep -v "cannot create bookmark .* bookmark exists" | grep -v "Cannot sync now: .* is already target of a zfs receive process." | grep -v "WARN: lzop not available on source .* sync will continue without compression."
 
 @daily       root zfs-verify.py
 
