@@ -36,9 +36,6 @@ duplicacy
 [gitolite_servers]
 git
 
-[haproxy_servers]
-haproxy
-
 [hass_servers]
 ha
 
@@ -55,7 +52,7 @@ k3s_slaves
 
 [media_servers]
 gabriel
-plex
+# plex
 
 [nextcloud_servers]
 nc
@@ -121,7 +118,6 @@ docker_servers
 # duplicacy_clients (as theophilus is included in this group)
 duplicacy_servers
 gitolite_servers
-haproxy_servers
 hass_servers
 k3s_cluster
 media_servers
