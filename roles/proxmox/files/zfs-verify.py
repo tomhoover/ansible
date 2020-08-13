@@ -29,7 +29,7 @@ def remove_ignored_filesystems(filesystems):
             try:
                 filesystems.remove(i);
             except ValueError:
-                print("%s%s%s : %s%s%s" % (Blue, i, Default, Red, "Not found in ignored_filesystems dictionary", Default))
+                print("%s%s%s : %s%s%s" % (Blue, i, Default, Red, "Remove from ignored_filesystems dictionary", Default))
                 break
         else:
             wildcard = i[:-2]
