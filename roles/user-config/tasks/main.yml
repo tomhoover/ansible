@@ -7,43 +7,21 @@
     home_dir: ""
   when: username == "root"
 
-- name: download grml-config file (.tmux.conf) for user '{{ username }}'
-  get_url:
-    url: http://git.grml.org/f/grml-etc-core/etc/tmux.conf
-    dest: "{{ home_dir }}/{{ username }}/.tmux.conf"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
-    force: yes
-    backup: yes
-- name: download grml-config file (.vimrc) for user '{{ username }}'
-  get_url:
-    url: http://git.grml.org/f/grml-etc-core/etc/vim/vimrc
-    dest: "{{ home_dir }}/{{ username }}/.vimrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
-    force: yes
-    backup: yes
-- name: download grml-config file (.zshrc) for user '{{ username }}'
-  get_url:
-    url: http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
-    dest: "{{ home_dir }}/{{ username }}/.zshrc"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0644
-    force: yes
-    backup: yes
-
-- name: copy grml-config file (.zshrc.local) for user '{{ username }}'
+- name: copy grml-config files for user '{{ username }}'
   copy:
-    src: ~/.zshrc.local
-    dest: "{{ home_dir }}/{{ username }}/.zshrc.local"
+    src: "{{ item }}"
+    dest: "{{ home_dir }}/{{ username }}/"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
+    follow: no       # overwrite existing links with files
     force: yes
-    backup: yes
+  loop:
+    - .screenrc
+    - .tmux.conf
+    - .vimrc
+    - .zshrc
+    - ~/.zshrc.local
 
 - name: copy .config files for user '{{ username }}'
   copy:
