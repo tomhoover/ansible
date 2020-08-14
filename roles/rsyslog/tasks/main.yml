@@ -1,6 +1,11 @@
 ---
 # tasks file for rsyslog
 
+- name: Ensure rsyslog is installed
+  package:
+    name: rsyslog
+    state: present
+
 - name: Copy /etc/rsyslog.d files
   copy:
     src: etc_rsyslog.d/
