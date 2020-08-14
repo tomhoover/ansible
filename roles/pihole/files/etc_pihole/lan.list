@@ -1,9 +1,4 @@
-192.168.5.3     ariel-wl
-192.168.5.4     freenas
-192.168.5.5     haproxy
-192.168.5.7     theophilus
-192.168.5.8     ezekiel
-192.168.5.9     gabriel
+# 192.168.5.9     gabriel
 192.168.5.9     t0m.us
 192.168.5.9     www.t0m.us
 192.168.5.9     grafana.t0m.us
@@ -17,13 +12,9 @@
 192.168.5.9     radarr.t0m.us
 192.168.5.9     sonarr.t0m.us
 192.168.5.9     tautulli.t0m.us
-#192.168.5.9    transmission.t0m.us
-192.168.5.10    pvhost1
-192.168.5.11    pvhost2
-192.168.5.12    pvhost3
+# 192.168.5.9    transmission.t0m.us
+
 192.168.5.14    nc.t0m.us nc nc.local
-192.168.5.15    debian1
-192.168.5.17    ubuntu1
 192.168.5.18    plex.t0m.us plex plex.local
 192.168.5.21    onkyo
 192.168.5.22    tivo-bolt
@@ -32,9 +23,7 @@
 192.168.5.25    appletv
 192.168.5.30    rockrobo
 192.168.5.31    philips-hue
-192.168.5.50    pihole1
-192.168.5.51    pihole2
-192.168.5.52    pihole3
+
 192.168.5.55    influxdb
 192.168.5.56    mariadb
 192.168.5.57    postgresql
@@ -43,27 +32,7 @@
 192.168.5.71    node2
 192.168.5.80    toms-iphone
 192.168.5.81    nanas-iphone
-192.168.5.86    ipad-work
-#192.168.5.90   duplicacy.duckdns.org
-#192.168.5.90   restic.duckdns.org
-192.168.5.91    drobo
+# 192.168.5.90   duplicacy.duckdns.org
+# 192.168.5.90   restic.duckdns.org
 192.168.5.92    zoneminder.t0m.us zoneminder zoneminder.local
-192.168.5.102   duplicacy
-192.168.5.105   git git.local
-192.168.5.107   rsyslog
-192.168.5.110   win10
-192.168.5.111   ha
 192.168.5.112   homeassistant
-192.168.5.123   archivebox
-192.168.5.127   alertmgr1
-192.168.5.128   alertmgr2
-192.168.5.129   prometheus1
-192.168.5.130   prometheus2
-192.168.5.131   dhost1
-192.168.5.132   k3s-master
-192.168.5.193   k3s-master1
-192.168.5.194   k3s-master2
-192.168.5.195   k3s-master3
-192.168.5.196   k3s-slave1
-192.168.5.197   k3s-slave2
-192.168.5.198   k3s-slave3
