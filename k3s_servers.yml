@@ -17,4 +17,5 @@
       apt:
         pkg:
         - nfs-common
+        - curl
 ...
