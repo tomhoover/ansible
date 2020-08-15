@@ -81,9 +81,8 @@ rsyslog
 # [samba_servers]
 # debian2
 
-[ubuntu_servers]
-ezekiel
-ubuntu1
+# [ubuntu_servers]
+# ubuntu1
 
 # [web_servers]
 # heimdall.t0m.us
@@ -133,12 +132,12 @@ rsyslog_servers
 # web_servers
 zoneminder_servers
 
-[UBUNTU_OS:children]
-ubuntu_servers
+# [UBUNTU_OS:children]
+# ubuntu_servers
 
 [APT:children]
 DEBIAN_OS
-UBUNTU_OS
+# UBUNTU_OS
 
 #[APT:vars]
 #ansible_ssh_user=tom
