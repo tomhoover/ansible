@@ -34,7 +34,7 @@ dhost1
 duplicacy
 
 [gitolite_servers]
-git
+gitolite
 
 [hass_servers]
 ha
