@@ -49,6 +49,41 @@
   loop:
     - ini
 
+- name: mc message_visible
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^message_visible=true'
+    line: 'message_visible=1'
+    backup: no
+
+- name: mc keybar_visible
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^keybar_visible=true'
+    line: 'keybar_visible=1'
+    backup: no
+
+- name: mc xterm_title
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^xterm_title=true'
+    line: 'xterm_title=1'
+    backup: no
+
+- name: mc menubar_visible
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^menubar_visible=true'
+    line: 'menubar_visible=1'
+    backup: no
+
+- name: mc free_space
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^free_space=true'
+    line: 'free_space=1'
+    backup: no
+
 - name: copy .local/share files for user '{{ username }}'
   copy:
     src: "~/.local/share/{{ item }}"
