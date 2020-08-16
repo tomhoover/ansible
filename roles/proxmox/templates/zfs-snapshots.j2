@@ -1,19 +1,21 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 
 # ZFS snapshots
-*/15 * * * * root zfsnap.sh snapshot -rsSvz -p 15min-   -a 3d      {{ snapshot_filesystems }} > /dev/null 2>&1
-@daily       root zfsnap.sh snapshot -rsSvz -p daily-   -a 3w      {{ snapshot_filesystems }} > /dev/null 2>&1
-@weekly      root zfsnap.sh snapshot -rsSvz -p weekly-  -a 3m      {{ snapshot_filesystems }} > /dev/null 2>&1
-@reboot      root zfsnap.sh snapshot -rsSvz -p reboot-  -a 3m      {{ snapshot_filesystems }} > /dev/null 2>&1
-@monthly     root zfsnap.sh snapshot -rsSvz -p monthly- -a forever {{ snapshot_filesystems }} > /dev/null 2>&1
+*/15 * * * * root zfsnap.sh snapshot -rsSvz -p 15min-   -a 3d      rpool/ROOT/pve-1 {{ snapshot_filesystems }} > /dev/null 2>&1
+@hourly      root zfsnap.sh snapshot -rsSvz -p hourly-  -a 3d      rpool            {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh snapshot -rsSvz -p daily-   -a 3w      rpool            {{ snapshot_filesystems }} > /dev/null 2>&1
+@weekly      root zfsnap.sh snapshot -rsSvz -p weekly-  -a 3m      rpool            {{ snapshot_filesystems }} > /dev/null 2>&1
+@reboot      root zfsnap.sh snapshot -rsSvz -p reboot-  -a 3m      rpool            {{ snapshot_filesystems }} > /dev/null 2>&1
+@monthly     root zfsnap.sh snapshot -rsSvz -p monthly- -a forever rpool            {{ snapshot_filesystems }} > /dev/null 2>&1
 
 #-------------------------
 
 # ZFS cleanup snapshots
-@daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             {{ snapshot_filesystems }} > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             {{ snapshot_filesystems }} > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- {{ snapshot_filesystems }} > /dev/null 2>&1
-@daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2d -p 15min-             rpool {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2d -p hourly-            rpool {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2w -p daily-             rpool {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 2m -p weekly- -p reboot- rpool {{ snapshot_filesystems }} > /dev/null 2>&1
+@daily       root zfsnap.sh destroy -rsSv -F 6m -p monthly-           rpool {{ snapshot_filesystems }} > /dev/null 2>&1
 {{ backup_disabled }}@daily       root zfsnap.sh destroy -rsSv       -p 15min- -p daily- -p weekly- -p reboot- {{ cleanup_filesystems }}
 
 #-------------------------

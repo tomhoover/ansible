@@ -7,5 +7,5 @@ backup_host3: pvhost3
 backup_sync_offset: 0
 backup_disabled: ''
 cleanup_filesystems: external
-snapshot_filesystems: rpool pool
+snapshot_filesystems: pool
 ...

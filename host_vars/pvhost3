@@ -8,6 +8,6 @@ backup_host3: pvhost2
 backup_sync_offset: 2
 backup_disabled: ''
 cleanup_filesystems: external
-snapshot_filesystems: rpool pool
+snapshot_filesystems: pool
 # backup_disabled: '#'
 ...
