@@ -9,7 +9,7 @@
 - import_playbook: debian_servers.yml
 - import_playbook: docker_servers.yml
 # - import_playbook: duplicacy_clients.yml
-# - import_playbook: duplicacy_servers.yml
+- import_playbook: duplicacy_servers.yml
 - import_playbook: hass_servers.yml
 - import_playbook: k3s_servers.yml
 - import_playbook: media_servers.yml
