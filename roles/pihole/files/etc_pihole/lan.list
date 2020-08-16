@@ -4,7 +4,7 @@
 192.168.5.9     grafana.t0m.us
 192.168.5.9     heimdall.t0m.us
 192.168.5.9     lidarr.t0m.us
-192.168.5.9     mariadb.t0m.us
+# 192.168.5.9     mariadb.t0m.us
 192.168.5.9     nzbget.t0m.us
 192.168.5.9     nzbhydra.t0m.us
 192.168.5.9     ombi.t0m.us
@@ -14,8 +14,6 @@
 192.168.5.9     tautulli.t0m.us
 # 192.168.5.9    transmission.t0m.us
 
-192.168.5.14    nc.t0m.us nc nc.local
-192.168.5.18    plex.t0m.us plex plex.local
 192.168.5.21    onkyo
 192.168.5.22    tivo-bolt
 192.168.5.23    tivo-roamio1
@@ -24,9 +22,6 @@
 192.168.5.30    rockrobo
 192.168.5.31    philips-hue
 
-192.168.5.55    influxdb
-192.168.5.56    mariadb
-192.168.5.57    postgresql
 192.168.5.60    pizw-0
 192.168.5.70    node1
 192.168.5.71    node2
@@ -34,5 +29,4 @@
 192.168.5.81    nanas-iphone
 # 192.168.5.90   duplicacy.duckdns.org
 # 192.168.5.90   restic.duckdns.org
-192.168.5.92    zoneminder.t0m.us zoneminder zoneminder.local
 192.168.5.112   homeassistant
