@@ -52,7 +52,7 @@ total = len(sys.argv)
 if total >= 2:  # at least one argument has been passed
     args = " ".join(sys.argv[1:])
 
-if not "--no-quiet" in args and str(datetime.datetime.now().hour) != '0' and not os.isatty(sys.stdout.fileno()):    # execute quietly if run via cron, except once daily or if '--no-quiet' arg is passed
+if not "--no-quiet" in args and str(datetime.datetime.now().hour) not in {0, 1, 2} and not os.isatty(sys.stdout.fileno()):    # execute quietly if run via cron, except once daily or if '--no-quiet' arg is passed
     args = args + " --quiet"
 else:
     args = args.replace('--no-quiet', '')
