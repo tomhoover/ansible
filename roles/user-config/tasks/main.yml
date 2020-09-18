@@ -59,29 +59,36 @@
 - name: mc keybar_visible
   lineinfile:
     path: ~/.config/mc/ini
-    regexp: '^keybar_visible=true'
+    regexp: '^keybar_visible='
     line: 'keybar_visible=1'
     backup: no
 
 - name: mc xterm_title
   lineinfile:
     path: ~/.config/mc/ini
-    regexp: '^xterm_title=true'
+    regexp: '^xterm_title='
     line: 'xterm_title=1'
     backup: no
 
 - name: mc menubar_visible
   lineinfile:
     path: ~/.config/mc/ini
-    regexp: '^menubar_visible=true'
+    regexp: '^menubar_visible='
     line: 'menubar_visible=1'
     backup: no
 
 - name: mc free_space
   lineinfile:
     path: ~/.config/mc/ini
-    regexp: '^free_space=true'
+    regexp: '^free_space='
     line: 'free_space=1'
+    backup: no
+
+- name: mc command_prompt
+  lineinfile:
+    path: ~/.config/mc/ini
+    regexp: '^command_prompt='
+    line: 'command_prompt=1'
     backup: no
 
 - name: copy .local/share files for user '{{ username }}'
