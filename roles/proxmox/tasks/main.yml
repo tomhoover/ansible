@@ -17,6 +17,14 @@
     dest: /etc/cron.d/zfs-snapshots
     mode: 0644
 
+- name: Copy duplicacy-backup.sh to /etc/cron.daily
+  template:
+    src: ~/bin/duplicacy-backup.sh
+    dest: /etc/cron.daily/duplicacy-backup
+    owner: root
+    group: staff
+    mode: 0755
+
 - name: Copy /usr/local/sbin files
   copy:
     src: "{{ item }}"
